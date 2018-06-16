@@ -11,7 +11,7 @@ view: order_items {
   dimension: numb {
     type: number
     # hidden: yes
-    sql: 1;;
+    sql: 2;;
   }
 
   dimension: inventory_item_id {
