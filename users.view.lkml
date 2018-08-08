@@ -23,7 +23,8 @@ view: users {
     sql: ${TABLE}.country ;;
   }
 
-  dimension_group: created {
+  dimension_group: made {
+    alias: [created]
     type: time
     timeframes: [
       raw,

@@ -4,7 +4,7 @@ connection: "thelook"
 include: "*.view"
 
 # include all the dashboards
-# include: "*.dashboard"
+#include: "*.dashboard"
 
 datagroup: bitcloud_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
