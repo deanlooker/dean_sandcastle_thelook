@@ -11,12 +11,16 @@ view: orders {
     type: time
     timeframes: [
       raw,
+      hour_of_day,
       time,
       date,
-      week,
+      day_of_week,
+      week_of_year,
       month,
+      month_name,
       quarter,
-      year
+      year,
+      day_of_month
     ]
     sql: ${TABLE}.created_at ;;
   }
