@@ -25,6 +25,12 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
+
+  measure: max_created {
+    type: max
+    sql: ${created_time} ;;
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
