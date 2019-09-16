@@ -51,7 +51,7 @@ view: orders {
 
   measure: iframe_test {
     type: yesno
-    sql: yes ;;
+    sql: 1==1 ;;
     html: <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScouygCcXNj8oFhB7biaiz2sIu_Kz25zc3oa7XRLghYYB5Dag/viewform?embedded=true" width="640" height="445" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> ;;
   }
 }
