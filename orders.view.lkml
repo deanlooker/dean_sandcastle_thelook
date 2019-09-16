@@ -29,11 +29,13 @@ view: orders {
   measure: max_created {
     type: max
     sql: ${created_time} ;;
+    html: {{ rendered_value | date: "%B %e, %Y" }} ;;
   }
 
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    html: <center>{{value}}</center> ;;
   }
 
   dimension: user_id {
@@ -45,5 +47,11 @@ view: orders {
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.id, users.last_name, order_items.count]
+  }
+
+  measure: iframe_test {
+    type: yesno
+    sql: yes ;;
+    html: <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScouygCcXNj8oFhB7biaiz2sIu_Kz25zc3oa7XRLghYYB5Dag/viewform?embedded=true" width="640" height="445" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> ;;
   }
 }
