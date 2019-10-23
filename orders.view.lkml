@@ -4,7 +4,7 @@ view: orders {
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: orders.id ;;
   }
 
   dimension_group: created {
@@ -22,9 +22,13 @@ view: orders {
       year,
       day_of_month
     ]
-    sql: ${TABLE}.created_at ;;
+    sql: orders.created_at ;;
   }
 
+  dimension: yesnothing {
+    type: yesno
+    sql: ${users.gender} = 'm';;
+  }
 
   measure: max_created {
     type: max

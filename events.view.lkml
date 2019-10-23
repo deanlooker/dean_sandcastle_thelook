@@ -21,6 +21,11 @@ view: events {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: timeofdaytest {
+    type: date_time_of_day
+    sql: ${TABLE}.created_date ;;
+  }
+
   dimension: type_id {
     type: number
     sql: ${TABLE}.type_id ;;
