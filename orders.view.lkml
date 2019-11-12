@@ -25,6 +25,19 @@ view: orders {
     sql: orders.created_at ;;
   }
 
+  parameter: numbers {
+    type:  number
+    allowed_value: {value: "2"}
+    allowed_value: {value: "4"}
+    allowed_value: {value: "44"}
+    allowed_value: {value: "42"}
+    allowed_value: {value: "24"}
+  }
+  dimension: number_value {
+    type: number
+    sql:  CAST({% parameter numbers %} as INT64);;
+  }
+
   dimension: yesnothing {
     type: yesno
     sql: ${users.gender} = 'm';;

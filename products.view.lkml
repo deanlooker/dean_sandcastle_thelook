@@ -12,6 +12,22 @@ view: products {
     sql: ${TABLE}.brand ;;
   }
 
+  measure: count_brand_is_allegra {
+    type: count
+    filters: {
+      field: brand
+      value: "Allegra K"
+    }
+  }
+
+  measure: count_category_is_jeans {
+    type: count
+    filters: {
+      field: category
+      value: "Jeans"
+    }
+  }
+
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;

@@ -42,4 +42,9 @@ view: order_items {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
   }
+
+  measure: item_list {
+    type: list
+    list_field: inventory_item_id
+  }
 }

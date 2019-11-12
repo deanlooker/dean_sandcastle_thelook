@@ -4,12 +4,10 @@ connection: "thelook"
 include: "*.view"
 
 
-datagroup: dean_test_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
-}
 
-persist_with: dean_test_default_datagroup
+
+
+#testing changes#
 
 
 
@@ -18,6 +16,7 @@ explore: connection_reg_r3 {}
 explore: derived_test_table_3_20190510 {}
 
 explore: events {
+
   join: users {
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
@@ -89,4 +88,6 @@ explore: zozo_table_20190508 {}
 
 explore: zozo_table_null {}
 
-explore: test_lookup {}
+explore: test_lookup_new {}
+
+explore: testing_explore {}

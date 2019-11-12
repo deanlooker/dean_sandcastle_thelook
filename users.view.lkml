@@ -47,15 +47,26 @@ view: users {
     sql: ${TABLE}.first_name ;;
   }
 
+  dimension: last_name {
+    type: string
+    sql: ${TABLE}.last_name ;;
+  }
+
+  dimension: full_name {
+    type: string
+    sql: concat(${TABLE}.first_name, " ", ${TABLE}.last_name) ;;
+    html: {% if value == first_name._value | append: ' ' | append: last_name._value %}
+    <font color="red">{{ value }}</font>
+    {% else %}
+    {{ value }}
+    {% endif %};;
+  }
+
   dimension: gender {
     type: string
     sql: ${TABLE}.gender ;;
   }
 
-  dimension: last_name {
-    type: string
-    sql: ${TABLE}.last_name ;;
-  }
 
   dimension: state {
     type: string
