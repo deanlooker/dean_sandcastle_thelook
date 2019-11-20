@@ -9,7 +9,7 @@ include: "*.view"
 
 #testing changes#
 
-
+explore: test_alert_dt {}
 
 explore: connection_reg_r3 {}
 
