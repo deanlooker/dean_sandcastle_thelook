@@ -30,7 +30,6 @@ explore: inventory_items {
   }
 }
 
-explore: orders {}
 
 explore: order_items {
   join: orders {

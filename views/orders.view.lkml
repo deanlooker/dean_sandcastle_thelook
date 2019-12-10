@@ -38,5 +38,4 @@ view: orders {
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
   }
 
-}
-
+  }
