@@ -7,6 +7,7 @@ view: pdttest {
       GROUP BY user_id
       ;;
       sql_trigger_value: Select Getdate() ;;
+      indexes: ["id"]
   }
 
   dimension: id {
