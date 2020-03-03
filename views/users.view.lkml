@@ -48,10 +48,13 @@ view: users {
     sql: ${TABLE}.first_name ;;
   }
 
-  dimension: gender {
-    type: string
-    sql: ${TABLE}.gender ;;
-  }
+#   commented out while testing https://looker.atlassian.net/browse/DD-1160
+#   https://master.dev.looker.com/looks/10726
+#
+#   dimension: gender {
+#     type: string
+#     sql: ${TABLE}.gender ;;
+#   }
 
   dimension: last_name {
     type: string
