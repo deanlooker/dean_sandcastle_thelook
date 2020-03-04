@@ -33,7 +33,8 @@ explore: inventory_items {
 }
 
 
-explore: order_items {
+explore: order_item {
+  view_name: order_items
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
