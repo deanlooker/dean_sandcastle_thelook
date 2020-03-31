@@ -20,11 +20,22 @@ view: orders {
       year
     ]
     sql: ${TABLE}.created_at ;;
+    drill_fields: [users.country]
   }
 
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  measure: distinct_users {
+    type: count_distinct
+    sql: ${user_id};;
+  }
+
+  measure: distinct_items {
+    type: count_distinct
+    sql: ${order_items.inventory_item_id};;
   }
 
   dimension: user_id {
