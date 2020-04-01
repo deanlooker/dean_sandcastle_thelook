@@ -4,7 +4,7 @@
   elements:
   - title: tile1
     name: tile1
-    model: bitcloud
+    model: bitcloud2
     explore: orders
     type: table
     fields:
@@ -23,7 +23,7 @@
     height: 6
   - title: New Tile
     name: New Tile
-    model: bitcloud
+    model: bitcloud2
     explore: orders
     type: looker_column
     fields:
@@ -81,7 +81,7 @@
     default_value: 7 days
     allow_multiple_values: true
     required: false
-    model: bitcloud
+    model: bitcloud2
     explore: orders
     listens_to_filters: []
     field: orders.created_date
