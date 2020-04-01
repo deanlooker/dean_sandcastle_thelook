@@ -13,6 +13,11 @@ view: inventory_items {
     sql: ${TABLE}.cost ;;
   }
 
+  parameter: inventory_picker {
+    type: string
+    allowed_value: { value: "pick me"}
+  }
+
   dimension_group: created {
     type: time
     timeframes: [
