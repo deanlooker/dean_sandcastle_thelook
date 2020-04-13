@@ -33,7 +33,7 @@ explore: inventory_items {
 }
 
 
-explore: order_item {
+explore: order_items {
   view_name: order_items
   join: orders {
     type: left_outer
