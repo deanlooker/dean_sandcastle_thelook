@@ -8,6 +8,10 @@ view: orders {
     sql: ${TABLE}.id ;;
   }
 
+  parameter: date_param {
+    type: date
+  }
+
   dimension_group: created {
     type: time
     timeframes: [
@@ -21,6 +25,11 @@ view: orders {
     ]
     sql: ${TABLE}.created_at ;;
     drill_fields: [users.country]
+  }
+
+  measure: most_recent {
+    type:  date
+    sql: max(${created_date}) ;;
   }
 
   dimension: status {
