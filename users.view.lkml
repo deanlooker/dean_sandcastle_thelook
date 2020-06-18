@@ -73,6 +73,11 @@ view: users {
     sql: ${TABLE}.state ;;
   }
 
+  filter: state_filter {
+    type: string
+    sql: CASE WHEN ${state} = "New York" or ${state} = "California" THEN ${state} else null end ;;
+  }
+
   dimension: zip {
     type: zipcode
     sql: ${TABLE}.zip ;;

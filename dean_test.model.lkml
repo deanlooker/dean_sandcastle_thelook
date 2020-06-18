@@ -4,7 +4,10 @@ connection: "thelook"
 include: "*.view"
 
 
-
+datagroup: test_datagroup {
+  max_cache_age: "9 hours"
+  sql_trigger: CURRENT_DATE() ;;
+}
 
 
 #testing changes#
@@ -78,7 +81,9 @@ explore: user_data {
   }
 }
 
-explore: users {}
+explore: users {
+  sql_always_where:  ${users.state} IN '{{ _user_attributes['state'] }}'  ;;
+}
 
 explore: users_nn {}
 
