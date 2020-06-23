@@ -18,6 +18,7 @@ view: inventory_items {
     allowed_value: { value: "pick me"}
   }
 
+
   dimension_group: created {
     type: time
     timeframes: [

@@ -87,4 +87,9 @@ view: users {
       user_data.count
     ]
   }
+
+  dimension: deantest {
+    type:  string
+    sql: ${TABLE}.deantest ;;
+  }
 }

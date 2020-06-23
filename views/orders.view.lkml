@@ -12,6 +12,10 @@ view: orders {
     type: date
   }
 
+  parameter: filter_param {
+    type: unquoted
+  }
+
   dimension_group: created {
     type: time
     timeframes: [
