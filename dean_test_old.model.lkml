@@ -82,7 +82,7 @@ explore: user_data {
 }
 
 explore: users {
-  sql_always_where:  ${users.state} IN ({{ _user_attributes['state'] }})  ;;
+  # sql_always_where:  ${users.state} IN ({{ _user_attributes['state'] }})  ;;
 }
 
 explore: users_nn {}

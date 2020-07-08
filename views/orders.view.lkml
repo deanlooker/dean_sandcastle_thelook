@@ -23,20 +23,6 @@ view: dean_orders {
     type: string
   }
 
-  parameter: limit_num {
-    group_label: "1. params"
-    type: number
-  }
-
-  parameter: date_param {
-    group_label: "1. params"
-    type: date
-  }
-
-  parameter: filter_param {
-    group_label: "1. params"
-    type: unquoted
-  }
 
   dimension_group: created {
     type: time
