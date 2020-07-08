@@ -23,6 +23,7 @@ view: users {
     sql: ${TABLE}.country ;;
   }
 
+
   dimension_group: made {
     alias: [created]
     type: time
@@ -64,6 +65,7 @@ view: users {
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
+
   }
 
   dimension: zip {

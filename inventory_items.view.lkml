@@ -12,6 +12,21 @@ view: inventory_items {
     sql: ${TABLE}.cost ;;
   }
 
+
+  dimension: samplekey {
+    type: number
+    sql: case when ${cost} > 10 then ${cost} else 0 end;;
+    html: {% if value > 10 %}
+    {{value}}
+    {% else %}
+    "CHEAP"
+    {% endif %} ;;
+  }
+
+
+
+
+
   dimension_group: created {
     type: time
     timeframes: [

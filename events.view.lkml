@@ -7,6 +7,7 @@ view: events {
     sql: ${TABLE}.id ;;
   }
 
+
   #test
 
   dimension_group: created {
@@ -47,5 +48,6 @@ view: events {
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id]
+
   }
 }

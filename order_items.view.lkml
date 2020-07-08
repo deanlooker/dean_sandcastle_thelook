@@ -8,6 +8,7 @@ view: order_items {
   }
 
 
+
   dimension: numb {
     type: number
     # hidden: yes
@@ -48,5 +49,6 @@ view: order_items {
   measure: count {
     type: count
     drill_fields: [id, inventory_items.id, orders.id]
+
   }
 }
