@@ -32,12 +32,21 @@ explore: inventory_items {
   }
 }
 
+# explore: order_items_ext {
+#   hidden:  no
+#   extends: [order_items]
+# }
 
 explore: order_items {
+#   hidden:  yes
+  access_filter: {
+    field: users.state
+    user_attribute: state
+  }
   view_name: order_items
-  join: orders {
+  join: dean_orders_2 {
     type: left_outer
-    sql_on: ${order_items.order_id} = ${orders.id} ;;
+    sql_on: ${order_items.order_id} = ${dean_orders_2.id} ;;
     relationship: many_to_one
   }
 
@@ -52,40 +61,54 @@ explore: order_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
-}
 
-explore: order_items_users {
-  extends: [order_items]
   join: users {
     type: left_outer
-    sql_on: ${orders.user_id} = ${users.id} ;;
+    sql_on: ${dean_orders_2.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
 
   join: user_facts {
     type: left_outer
-    sql_on: ${user_facts.id} = ${users.id} ;;
-    relationship: one_to_one
-  }
-  join: products {
-    fields: []
+    sql_on: ${users.id} = ${user_facts.id} ;;
+    relationship: many_to_one
   }
 }
 
-explore: orders {
+# explore: order_items_users {
+#   extends: [order_items]
+#   join: users {
+#     type: left_outer
+#     sql_on: ${orders.user_id} = ${users.id} ;;
+#     relationship: many_to_one
+#   }
+
+#   join: user_facts {
+#     type: left_outer
+#     sql_on: ${user_facts.id} = ${users.id} ;;
+#     relationship: one_to_one
+#   }
+#   join: products {
+#     fields: []
+#   }
+# }
+
+explore: dean_orders_2 {
   join: users {
     type: left_outer
-    sql_on: ${orders.user_id} = ${users.id} ;;
+    sql_on: ${dean_orders_2.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
   join: order_items {
     type: inner
-    sql_on: ${order_items.order_id} = ${orders.id} ;;
+    sql_on: ${order_items.order_id} = ${dean_orders_2.id} ;;
     relationship: one_to_many
   }
 }
 
 explore: products {}
+
+explore: dean_orders {}
 
 explore: schema_migrations {}
 

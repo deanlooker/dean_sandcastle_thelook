@@ -1,4 +1,4 @@
-view: dean_orders {
+view: dean_orders_2 {
   sql_table_name: demo_db.orders;;
   drill_fields: [id]
 
@@ -8,33 +8,15 @@ view: dean_orders {
     sql: ${TABLE}.id ;;
   }
 
-  filter: test_filter {
-    group_label: "2. filters"
-    type: date
-  }
-
-  filter: filter_test {
-    group_label: "2. filters"
-    type: string
-  }
-
-  filter: aah_real_filters {
-    group_label: "1. params"
-    type: string
-  }
-
   parameter: limit_num {
-    group_label: "1. params"
     type: number
   }
 
   parameter: date_param {
-    group_label: "1. params"
     type: date
   }
 
   parameter: filter_param {
-    group_label: "1. params"
     type: unquoted
   }
 
@@ -68,10 +50,10 @@ view: dean_orders {
     sql: ${user_id};;
   }
 
-#   measure: distinct_items {
-#     type: count_distinct
-#     sql: ${order_items.inventory_item_id};;
-#   }
+  measure: distinct_items {
+    type: count_distinct
+    sql: ${order_items.inventory_item_id};;
+  }
 
   dimension: user_id {
     type: number
@@ -84,4 +66,4 @@ view: dean_orders {
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
   }
 
-  }
+}

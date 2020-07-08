@@ -64,6 +64,14 @@ view: users {
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
+    html:
+    {% assign length = value | size %}
+    {% if length > 10 %}
+    <p style="font-size:10px">{{value}}</p>
+     {% else %}
+    <p style="font-size:6px">{{value}}</p>
+    {% endif %}
+    ;;
   }
 
   dimension: zip {
@@ -81,11 +89,11 @@ view: users {
     fields: [
       id,
       first_name,
-      last_name,
-      events.count,
-      orders.count,
-      user_data.count
-    ]
+      last_name ]
+#       events.count,
+#       orders_test.count,
+#       user_data.count
+#     ]
   }
 
   dimension: deantest {

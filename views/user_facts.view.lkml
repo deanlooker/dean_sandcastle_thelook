@@ -1,13 +1,15 @@
 view: user_facts {
   derived_table: {
+    sql_trigger_value: SELECT HOUR(CURTIME()) ;;
     explore_source: order_items {
       column: id { field: users.id }
-      column: count { field: orders.count }
-      column: distinct_items { field: orders.distinct_items }
-      column: most_recent { field: orders.most_recent }
+      column: count { field: dean_orders_2.count }
+      column: distinct_items { field: dean_orders_2.distinct_items }
+      column: most_recent { field: dean_orders_2.most_recent }
       column: email { field: users.email }
       column: city { field: users.city }
     }
+    indexes: ["id"]
   }
 
   dimension: id {

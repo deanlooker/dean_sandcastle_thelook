@@ -3,7 +3,7 @@ view: orders_dt_test {
     sql: SELECT
         * from demo_db.orders
       order by created_at desc
-      limit {% parameter limit_num %}
+      limit {% parameter orders.limit_num %}
       ;;
       }
  parameter: limit_num {
