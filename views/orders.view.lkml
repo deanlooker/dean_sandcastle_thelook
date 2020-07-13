@@ -63,6 +63,7 @@ view: dean_orders {
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
+    tags: ["user_id"]
   }
 
   measure: count {
