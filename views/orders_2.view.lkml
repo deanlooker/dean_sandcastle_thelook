@@ -43,6 +43,20 @@ view: dean_orders_2 {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension_group: created_nofill {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.created_at ;;
+  }
+
   dimension: id {
     primary_key: yes
     type: number
