@@ -94,6 +94,11 @@ explore: order_items {
 # }
 
 explore: dean_orders_2 {
+  sql_always_where:
+ ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY) ;;
+
+
+
   join: users {
     type: left_outer
     sql_on: ${dean_orders_2.user_id} = ${users.id} ;;
