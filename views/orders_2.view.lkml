@@ -55,6 +55,7 @@ view: dean_orders_2 {
       year
     ]
     sql: ${TABLE}.created_at ;;
+    allow_fill: no
   }
 
   dimension: id {
