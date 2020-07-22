@@ -39,6 +39,21 @@ view: dean_orders {
     drill_fields: [users.country]
   }
 
+  dimension_group: created_content_val_test {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.created_at ;;
+    drill_fields: [users.country]
+  }
+
   measure: most_recent {
     type:  date
     sql: max(${created_date}) ;;
