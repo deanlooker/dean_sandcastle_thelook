@@ -16,6 +16,11 @@ explore: connection_reg_r3 {
 
 explore: derived_test_table_3_20190510 {}
 
+access_grant: can_see_sensitive_data_only {
+  user_attribute: can_see_sensitive_data
+  allowed_values: ["yes"]
+}
+
 # explore: events {
 #   join: users {
 #     type: left_outer
@@ -31,6 +36,8 @@ explore: inventory_items {
     relationship: many_to_one
   }
 }
+
+
 
 # explore: order_items_ext {
 #   hidden:  no
