@@ -118,7 +118,9 @@ explore: dean_orders_2 {
   }
 }
 
-explore: products {}
+explore: products {
+  required_access_grants: [can_see_sensitive_data_only]
+}
 
 explore: dean_orders {}
 

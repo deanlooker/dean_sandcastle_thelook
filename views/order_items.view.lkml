@@ -12,6 +12,7 @@ view: order_items {
     type: number
     # hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
+    required_access_grants: [can_see_sensitive_data_only]
   }
 
   dimension: order_id {

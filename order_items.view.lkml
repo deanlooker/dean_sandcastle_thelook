@@ -13,7 +13,6 @@ view: order_items {
     type: number
     # hidden: yes
     sql: 4;;
-    required_access_grants: [can_see_sensitive_data_only]
   }
 
   dimension: inventory_item_id {
