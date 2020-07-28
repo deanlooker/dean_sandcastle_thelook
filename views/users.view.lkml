@@ -76,6 +76,36 @@ view: users {
     ;;
   }
 
+  dimension: state_case {
+    case: {
+      when: {
+        sql: users.state in ('Maine', 'Vermont', 'New Hampshire', 'Massachusetts', 'Rhode Island', 'Connecticut');;
+        label: "New England"
+      }
+      when: {
+        sql: users.state in ('California', 'Oregon', 'Washington', 'Hawaii', 'Alaska');;
+        label: "Pacific"
+      }
+      when: {
+        sql: users.state in ('New York','New Jersey','Pennsylvania', 'Delaware', 'Maryland');;
+        label: "Mid-Atlantic"
+      }
+      when: {
+        sql: users.state in ('New York','New Jersey','Pennsylvania');;
+        label: "Mid-Atlantic"
+      }
+      when: {
+        sql: users.state in ('Indiana','Illinois','Ohio','Kansas','Missouri','Michigan','Wisconsin','Iowa','Nebraska','South Dakota','North Dakota','Nebraska');;
+        label: "Midwest"
+      }
+      when: {
+        sql: users.state in ('Colorado','Nevada','Utah','Montana','New Mexico','Arizona','Idaho','Wyoming');;
+        label: "Mountain West"
+      }
+      else: "South"
+    }
+  }
+
   dimension: zip {
     type: zipcode
     sql: ${TABLE}.zip ;;

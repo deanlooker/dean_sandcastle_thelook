@@ -4,7 +4,7 @@ connection: "thelook"
 include: "/views/**/*.view"
 
 datagroup: dean_test_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+   sql_trigger: SELECT MAX(id) FROM orders;;
   max_cache_age: "1 hour"
 }
 
@@ -36,6 +36,8 @@ explore: inventory_items {
     relationship: many_to_one
   }
 }
+
+explore: users_sql_dt {}
 
 
 
