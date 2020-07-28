@@ -4,7 +4,7 @@ connection: "thelook"
 include: "/views/**/*.view"
 
 datagroup: dean_test_default_datagroup {
-   sql_trigger: SELECT MAX(id) FROM orders;;
+   sql_trigger: SELECT (MAX(id) FROM orders)+1;;
   max_cache_age: "1 hour"
 }
 
