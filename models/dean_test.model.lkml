@@ -35,9 +35,23 @@ explore: inventory_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+
 }
 
-explore: users_sql_dt {}
+# explore: users_sql_dt {}
+
+explore: limited_orders {
+  view_name: dean_orders_2
+  always_filter: {filters: [user_id_parameter: ""]}
+  sql_always_where: ${dean_orders_2.user_id} = {% parameter dean_orders_2.user_id_parameter %} ;;
+  fields: [ALL_FIELDS*, -dean_orders_2.distinct_items ]
+}
+
+explore: limited_orders_suggest {
+  from: dean_orders_2
+  hidden: yes
+  fields: [ALL_FIELDS*, -limited_orders_suggest.distinct_items ]
+}
 
 
 
@@ -48,10 +62,10 @@ explore: users_sql_dt {}
 
 explore: order_items {
 #   hidden:  yes
-  access_filter: {
-    field: users.state
-    user_attribute: state
-  }
+  # access_filter: {
+  #   field: users.state
+  #   user_attribute: state
+  # }
   view_name: order_items
   join: dean_orders_2 {
     type: left_outer
@@ -103,8 +117,9 @@ explore: order_items {
 # }
 
 explore: dean_orders_2 {
-  sql_always_where:
- ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY) ;;
+##   sql_always_where:
+## ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY)
+## ;;
 
 
 

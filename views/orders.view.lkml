@@ -24,17 +24,8 @@ view: dean_orders {
   }
 
 
-  dimension_group: created {
+  dimension_group: created_and_Stuff {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
     sql: ${TABLE}.created_at ;;
     drill_fields: [users.country]
   }
@@ -54,10 +45,10 @@ view: dean_orders {
     drill_fields: [users.country]
   }
 
-  measure: most_recent {
-    type:  date
-    sql: max(${created_date}) ;;
-  }
+  # measure: most_recent {
+  #   type:  date
+  #   sql: max(${created_date}) ;;
+  # }
 
   dimension: status {
     type: string

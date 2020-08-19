@@ -10,14 +10,14 @@ view: dean_orders_2 {
   dimension: date_filter_start_dim {
     hidden: yes
     type: date
-    sql: CASE WHEN datediff({% date_end dean_orders_2.date_filter %}, {% date_start dean_orders_2.date_filter %}) > 365 THEN date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY) ELSE {% date_start dean_orders_2.date_filter %} END
+    sql: CASE WHEN datediff({% date_end date_filter %}, {% date_start date_filter %}) > 365 THEN date_sub({% date_end date_filter %}, INTERVAL 365 DAY) ELSE {% date_start date_filter %} END
     ;;
   }
 
   dimension: date_filter_end_dim {
     hidden:  yes
     type: date
-    sql: {% date_end dean_orders_2.date_filter %};;
+    sql: {% date_end date_filter %};;
   }
 
   dimension: date_range {
@@ -27,6 +27,16 @@ view: dean_orders_2 {
     sql: concat(cast(${date_filter_start_dim} AS CHAR), " - ", cast(${date_filter_end_dim} AS CHAR)) ;;
     html: <div>{{value}}</div> </br>
    <div> Note: filter will only go back maximum 365 days from end date selected!</div>;;
+  }
+
+
+  dimension: last_id {
+    type: number
+    sql: (SELECT ${TABLE}.id
+      FROM ${TABLE}
+      ORDER BY ${TABLE}.created_at DESC
+      LIMIT 1)
+      ;;
   }
 
   dimension_group: created {
@@ -41,6 +51,7 @@ view: dean_orders_2 {
       year
     ]
     sql: ${TABLE}.created_at ;;
+    datatype: timestamp
   }
 
   dimension_group: created_nofill {
@@ -80,7 +91,7 @@ view: dean_orders_2 {
 
 
   measure: most_recent {
-    type:  date
+    type: date_time
     sql: max(${created_date}) ;;
   }
 
@@ -100,7 +111,7 @@ view: dean_orders_2 {
   }
 
   dimension: user_id {
-    type: number
+    type: string
     # hidden: yes
     sql: ${TABLE}.user_id ;;
     tags: ["user_id"]
@@ -109,6 +120,14 @@ view: dean_orders_2 {
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
+  }
+
+  ### For use with sql_always_where in limited_orders explore ###
+
+  parameter: user_id_parameter {
+    type: string
+    suggest_explore: limited_orders_suggest
+    suggest_dimension: limited_orders_suggest.user_id
   }
 
 }

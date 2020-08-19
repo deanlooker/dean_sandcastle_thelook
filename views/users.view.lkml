@@ -39,6 +39,15 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: last_id {
+    type: number
+    sql: (SELECT ${TABLE}.id
+      FROM ${TABLE}
+      ORDER BY ${TABLE}.created_at DESC
+      LIMIT 1)
+      ;;
+  }
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
