@@ -53,6 +53,7 @@ view: dean_orders {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    suggest_dimension: status
   }
 
   measure: distinct_users {
