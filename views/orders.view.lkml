@@ -53,8 +53,18 @@ view: dean_orders {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
-    suggest_dimension: status
+    suggest_dimension: suggests.status_suggest
+    suggest_explore: suggests
   }
+
+  parameter: schema {
+    type: unquoted
+    allowed_value: {value: "demo_db"}
+    allowed_value: {value: "breaky"}
+  }
+
+
+
 
   measure: distinct_users {
     type: count_distinct
@@ -79,3 +89,15 @@ view: dean_orders {
   }
 
   }
+
+explore: suggests {
+  join: dean_orders {}
+}
+
+view: suggests {
+  sql_table_name: {% parameter dean_orders.schema %}.orders ;;
+dimension: status_suggest {
+  hidden: yes
+  sql: (SELECT status FROM ${suggests.SQL_TABLE_NAME});;
+}
+}
