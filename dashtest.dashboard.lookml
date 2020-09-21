@@ -83,10 +83,7 @@
     required: false
     model: bitcloud2
     explore: orders
-    listens_to_filters: []
     field: orders.created_date
   - name: datetest
     type: date_filter
     explore: orders
-    listens_to_filters: []
-    field: orders.created_date
