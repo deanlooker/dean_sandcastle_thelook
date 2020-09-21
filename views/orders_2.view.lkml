@@ -85,7 +85,8 @@ view: dean_orders_2 {
   }
 
   parameter: filter_param {
-    type: unquoted
+    type: string
+    suggest_dimension: status
   }
 
 

@@ -6,7 +6,6 @@ view: pdttest {
       FROM orders
       GROUP BY user_id
       ;;
-      sql_trigger_value: Select Getdate() ;;
       indexes: ["id"]
   }
 

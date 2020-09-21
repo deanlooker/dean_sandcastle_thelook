@@ -1,6 +1,6 @@
 view: user_facts {
   derived_table: {
-    sql_trigger_value: SELECT HOUR(CURTIME()) ;;
+    datagroup_trigger: dean_test_default_datagroup
     explore_source: order_items {
       column: id { field: users.id }
       column: count { field: dean_orders_2.count }
@@ -34,6 +34,12 @@ view: user_facts {
 
   dimension: deantest {
     type:  yesno
+  }
+
+  parameter: deantest_param {
+    type: string
+    allowed_value: {value: "Yes"}
+    allowed_value: {value: "No"}
   }
 
 }

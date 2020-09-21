@@ -37,12 +37,12 @@ view: order_items {
 
   dimension: sale_price {
     type: number
-    sql: case when ${TABLE}.sale_price < 10 then null else ${TABLE}.sale_price end ;;
-    html: {% if value > 0 %}
-    {{ value }}
-    {% else %}
-    ""
-    {% endif %};;
+    sql: ${TABLE}.sale_price;;
+  }
+
+  measure: total_sale_price {
+    type: sum
+    sql: ${sale_price} ;;
   }
 
   measure: count {
