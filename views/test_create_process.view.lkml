@@ -8,7 +8,7 @@ derived_table: {
           SELECT
             o.id as order_id, o.created_at as created_at, sum(i.sale_price) as total_price
           from demo_db.order_items i
-            inner join ${orders_pdt_test.SQL_TABLE_NAME} o ON order_items.order_id = orders.id
+            inner join ${orders_pdt_test.SQL_TABLE_NAME} o ON i.order_id = o.id
       ;;
     sql_step:
         -- ADD INDEXES to table
