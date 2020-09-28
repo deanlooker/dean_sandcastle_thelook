@@ -1,14 +1,14 @@
-view: orders_dt_test {
+view: orders_pdt_test {
   derived_table: {
     sql: SELECT
         * from demo_db.orders
-        where {% condition filter_test %} status {% endcondition %}
       order by created_at desc
       ;;
-      }
- parameter: limit_num {
-   type: number
- }
+    datagroup_trigger: dean_test_default_datagroup
+  }
+  parameter: limit_num {
+    type: number
+  }
   dimension: id {
     primary_key: yes
     type: number

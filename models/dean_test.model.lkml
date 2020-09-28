@@ -8,7 +8,7 @@ datagroup: dean_test_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: dean_test_default_datagroup
+# persist_with: dean_test_default_datagroup
 
 explore: connection_reg_r3 {
   sql_always_where: 1=2 ;;
@@ -160,5 +160,7 @@ explore: users {
 }
 
 explore: users_nn {}
+
+explore: orders_dt_test {}
 
 # explore: test_create_process {}
