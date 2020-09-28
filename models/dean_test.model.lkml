@@ -14,6 +14,8 @@ explore: connection_reg_r3 {
   sql_always_where: 1=2 ;;
 }
 
+explore: test_create_process {}
+
 explore: derived_test_table_3_20190510 {}
 
 access_grant: can_see_sensitive_data_only {
