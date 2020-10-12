@@ -7,7 +7,7 @@ view: events {
     sql: ${TABLE}.id ;;
   }
 
-
+# adding this line to deploy
   #test
 
   dimension_group: created {
