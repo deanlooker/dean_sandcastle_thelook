@@ -7,6 +7,8 @@ view: events {
     sql: ${TABLE}.id ;;
   }
 
+  # adding to test nodeploy permission #
+
 
   #test
 
