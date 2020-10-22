@@ -48,6 +48,7 @@ view: dean_orders_2 {
       week,
       month,
       quarter,
+      week_of_year,
       year
     ]
     sql: ${TABLE}.created_at ;;
@@ -89,6 +90,12 @@ view: dean_orders_2 {
     suggest_dimension: status
   }
 
+  parameter: view {
+    type: unquoted
+    allowed_value: {value:"dean_orders_2"}
+    allowed_value: {value:"order_items"}
+  }
+
 
 
   measure: most_recent {
@@ -108,8 +115,11 @@ view: dean_orders_2 {
 
   measure: distinct_items {
     type: count_distinct
-    sql: ${order_items.inventory_item_id};;
+    sql: {% assign view = view._parameter_value %}
+     {{ "${" | append: view | append: ".id}" }};;
+
   }
+  # sql: ${order_items.inventory_item_id};;
 
   dimension: user_id {
     type: string

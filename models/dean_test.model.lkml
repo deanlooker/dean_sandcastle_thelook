@@ -2,6 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/dashboards/*"
 
 datagroup: dean_test_default_datagroup {
    sql_trigger: SELECT HOUR(CURTIME());;
@@ -138,7 +139,11 @@ explore: dean_orders_2 {
 }
 
 explore: products {
-  required_access_grants: [can_see_sensitive_data_only]
+  join: products_brand_count {
+    type: left_outer
+    sql_on: ${products.brand} = ${products_brand_count.brand} ;;
+    relationship: many_to_one
+   }
 }
 
 explore: dean_orders {}
