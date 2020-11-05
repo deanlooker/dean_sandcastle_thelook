@@ -103,6 +103,12 @@ view: dean_orders_2 {
     sql: max(${created_date}) ;;
   }
 
+  dimension_group: first_order {
+    type: time
+    timeframes: [date,day_of_week,month,month_name,month_num,year,time]
+    sql: SELECT min(created_at) from demo_db.orders where user_id = ${user_id} ;;
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
@@ -131,6 +137,16 @@ view: dean_orders_2 {
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
+  }
+
+  dimension: is_complete {
+    type: yesno
+    sql: ${status} = "complete" ;;
+  }
+
+  measure: count_complete {
+    type: count
+    filters: [status: "complete"]
   }
 
   ### For use with sql_always_where in limited_orders explore ###
