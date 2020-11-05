@@ -4,6 +4,8 @@ connection: "thelook"
 include: "/views/**/*.view"
 include: "/dashboards/*"
 
+## adding testing line ###
+
 datagroup: dean_test_default_datagroup {
    sql_trigger: SELECT HOUR(CURTIME());;
   max_cache_age: "1 hour"
