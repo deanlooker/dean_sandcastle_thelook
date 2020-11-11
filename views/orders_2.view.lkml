@@ -117,6 +117,13 @@ view: dean_orders_2 {
   measure: distinct_users {
     type: count_distinct
     sql: ${user_id};;
+    required_access_grants: [can_see_sensitive_data_only]
+  }
+
+
+  measure: orders_per_user {
+    type: number
+    sql: ${count}/${distinct_users} ;;
   }
 
   measure: distinct_items {
