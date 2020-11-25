@@ -2,6 +2,9 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/dashboards/*"
+
+## adding testing line ###
 
 datagroup: dean_test_default_datagroup {
    sql_trigger: SELECT HOUR(CURTIME());;
@@ -23,6 +26,11 @@ access_grant: can_see_sensitive_data_only {
   allowed_values: ["yes"]
 }
 
+access_grant: can_see_any_data {
+  user_attribute: can_see_sensitive_data
+  allowed_values: ["yes","no"]
+}
+
 # explore: events {
 #   join: users {
 #     type: left_outer
@@ -32,12 +40,17 @@ access_grant: can_see_sensitive_data_only {
 # }
 
 explore: inventory_items {
+  required_access_grants: [can_see_sensitive_data_only]
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+}
 
+explore: inventory_items_ext {
+  extends: [inventory_items]
+  required_access_grants: [can_see_any_data]
 }
 
 # explore: users_sql_dt {}
@@ -138,7 +151,11 @@ explore: dean_orders_2 {
 }
 
 explore: products {
-  required_access_grants: [can_see_sensitive_data_only]
+  join: products_brand_count {
+    type: left_outer
+    sql_on: ${products.brand} = ${products_brand_count.brand} ;;
+    relationship: many_to_one
+   }
 }
 
 explore: dean_orders {}

@@ -48,6 +48,7 @@ view: dean_orders_2 {
       week,
       month,
       quarter,
+      week_of_year,
       year
     ]
     sql: ${TABLE}.created_at ;;
@@ -89,11 +90,23 @@ view: dean_orders_2 {
     suggest_dimension: status
   }
 
+  parameter: view {
+    type: unquoted
+    allowed_value: {value:"dean_orders_2"}
+    allowed_value: {value:"order_items"}
+  }
+
 
 
   measure: most_recent {
     type: date_time
     sql: max(${created_date}) ;;
+  }
+
+  dimension_group: first_order {
+    type: time
+    timeframes: [date,day_of_week,month,month_name,month_num,year,time]
+    sql: SELECT min(created_at) from demo_db.orders where user_id = ${user_id} ;;
   }
 
   dimension: status {
@@ -104,12 +117,22 @@ view: dean_orders_2 {
   measure: distinct_users {
     type: count_distinct
     sql: ${user_id};;
+    required_access_grants: [can_see_sensitive_data_only]
+  }
+
+
+  measure: orders_per_user {
+    type: number
+    sql: ${count}/${distinct_users} ;;
   }
 
   measure: distinct_items {
     type: count_distinct
-    sql: ${order_items.inventory_item_id};;
+    sql: {% assign view = view._parameter_value %}
+     {{ "${" | append: view | append: ".id}" }};;
+
   }
+  # sql: ${order_items.inventory_item_id};;
 
   dimension: user_id {
     type: string
@@ -121,6 +144,21 @@ view: dean_orders_2 {
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
+  }
+
+  dimension: is_complete {
+    type: yesno
+    sql: ${status} = "complete" ;;
+  }
+
+  measure: count_complete {
+    type: count
+    filters: [status: "complete"]
+  }
+
+  measure: raw_count {
+    type: number
+    sql: count(*) ;;
   }
 
   ### For use with sql_always_where in limited_orders explore ###

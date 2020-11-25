@@ -15,6 +15,9 @@ view: products {
 
   dimension: category {
     type: string
+    group_label: "{% if _explore._name == 'products' %}1. Category
+    {% else %}X Category
+    {% endif %}"
     sql: ${TABLE}.category ;;
   }
 
