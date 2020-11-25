@@ -40,6 +40,7 @@ access_grant: can_see_any_data {
 # }
 
 explore: inventory_items {
+  view_name: inventory_items
   required_access_grants: [can_see_sensitive_data_only]
   join: products {
     type: left_outer
@@ -49,6 +50,7 @@ explore: inventory_items {
 }
 
 explore: inventory_items_ext {
+  label: "Inventory Items Extended"
   extends: [inventory_items]
   required_access_grants: [can_see_any_data]
 }
