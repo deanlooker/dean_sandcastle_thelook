@@ -12,10 +12,17 @@ view: products {
     type: string
     sql: ${TABLE}.brand ;;
     link: {
+      label: "Vendor Performance 2"
+      url: "/dashboards/417?Brand test={{ value }}"
+    }
+    link: {
       label: "Vendor Performance"
-      url: "/dashboards/417?Brand={{ value | url_encode }}"
+      url: "/dashboards/417?Brand test={{ value | url_encode }}"
     }
   }
+
+
+
 
   dimension: category {
     type: string
