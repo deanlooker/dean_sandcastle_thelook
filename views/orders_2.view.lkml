@@ -156,6 +156,11 @@ view: dean_orders_2 {
     filters: [status: "complete"]
   }
 
+  measure: raw_count {
+    type: number
+    sql: count(*) ;;
+  }
+
   ### For use with sql_always_where in limited_orders explore ###
 
   parameter: user_id_parameter {
