@@ -31,6 +31,7 @@ view: inventory_items {
       year
     ]
     sql: ${TABLE}.created_at ;;
+    description: "time the item was created"
   }
 
   dimension: product_id {
@@ -55,6 +56,7 @@ view: inventory_items {
 
   measure: count {
     type: count
+    description: "count of items"
     drill_fields: [id, products.id, products.item_name, order_items.count]
   }
 }
