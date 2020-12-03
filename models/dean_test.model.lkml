@@ -173,6 +173,22 @@ explore: user_data {
   }
 }
 
+explore: order_items_or_max_return {
+  view_name: dean_orders_2
+  join: orders_returned {
+    type: left_outer
+    sql_on: ${dean_orders_2.id} = ${orders_returned.order_id} ;;
+    relationship: one_to_one
+  }
+  join: order_items {
+    type: left_outer
+    sql_on: ${dean_orders_2.id} = ${order_items.order_id}
+            AND
+            (CASE WHEN (NOT ${orders_returned.is_returned}) OR (${orders_returned.is_returned} AND ${orders_returned.max_order_item_id} = ${order_items.id}) THEN 1 ELSE 0 END) = 1 ;;
+    relationship: one_to_many
+  }
+}
+
 explore: users {
   join: user_facts {
     type: left_outer
