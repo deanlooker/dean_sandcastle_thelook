@@ -1,4 +1,4 @@
-connection: "thelook"
+connection: "the_look"
 
 # include all the views
 include: "/views/**/*.view"
@@ -183,5 +183,7 @@ explore: users {
 explore: users_nn {}
 
 explore: orders_dt_test {}
+
+explore: orders_by_state_dt {}
 
 # explore: test_create_process {}
