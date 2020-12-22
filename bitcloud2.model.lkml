@@ -4,6 +4,8 @@ connection: "thelook"
 include: "*.view"
 include: "*.dashboard"
 
+#adams test comment
+
 # include all the dashboards
 #include: "*.dashboard"
 
