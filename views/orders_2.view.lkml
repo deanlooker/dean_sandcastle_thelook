@@ -55,6 +55,21 @@ view: dean_orders_2 {
     datatype: timestamp
   }
 
+  parameter: date_filter_selector {
+    type: date
+    suggest_dimension: orders_2.created_date
+  }
+
+  measure: count_selected_date {
+    type: count_distinct
+    sql: CASE WHEN (date({% parameter date_filter_selector %}) = ${created_date}) THEN ${id} ELSE NULL end ;;
+  }
+
+  measure: count_prior_date {
+    type: count_distinct
+    sql: CASE WHEN (date(dateadd({% parameter date_filter_selector %}, INTERVAL -7 DAY)) = ${created_date}) THEN ${id} else NULL end ;;
+  }
+
   dimension_group: created_nofill {
     type: time
     timeframes: [
@@ -112,6 +127,16 @@ view: dean_orders_2 {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    html:
+    <b><p style="text-align:center">
+    {% if value == 'cancelled' %}
+    🚫
+    {% elsif value == 'complete' %}
+    👍
+    {% elsif value == 'pending' %}
+    🤷
+    {% endif %}
+    {{ value }} </p></b>;;
   }
 
   measure: distinct_users {
@@ -126,12 +151,12 @@ view: dean_orders_2 {
     sql: ${count}/${distinct_users} ;;
   }
 
-  measure: distinct_items {
-    type: count_distinct
-    sql: {% assign view = view._parameter_value %}
-     {{ "${" | append: view | append: ".id}" }};;
+  # measure: distinct_items {
+  #   type: count_distinct
+  #   sql: {% assign view = view._parameter_value %}
+  #   {{ "${" | append: view | append: ".id}" }};;
 
-  }
+  # }
   # sql: ${order_items.inventory_item_id};;
 
   dimension: user_id {
@@ -154,6 +179,7 @@ view: dean_orders_2 {
   measure: count_complete {
     type: count
     filters: [status: "complete"]
+
   }
 
   measure: raw_count {

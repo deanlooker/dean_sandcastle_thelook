@@ -62,13 +62,13 @@ explore: limited_orders {
   view_name: dean_orders_2
   always_filter: {filters: [user_id_parameter: ""]}
   sql_always_where: ${dean_orders_2.user_id} = {% parameter dean_orders_2.user_id_parameter %} ;;
-  fields: [ALL_FIELDS*, -dean_orders_2.distinct_items ]
+
 }
 
 explore: limited_orders_suggest {
   from: dean_orders_2
   hidden: yes
-  fields: [ALL_FIELDS*, -limited_orders_suggest.distinct_items ]
+
 }
 
 
