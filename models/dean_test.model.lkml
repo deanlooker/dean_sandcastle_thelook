@@ -1,4 +1,4 @@
-connection: "thelook"
+connection: "the_look"
 
 ###testing lalalal ####
 # include all the views
@@ -200,5 +200,7 @@ explore: users {
 explore: users_nn {}
 
 explore: orders_dt_test {}
+
+explore: orders_by_state_dt {}
 
 # explore: test_create_process {}
