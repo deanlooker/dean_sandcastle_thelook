@@ -186,4 +186,6 @@ explore: orders_dt_test {}
 
 explore: orders_by_state_dt {}
 
+explore: events {}
+
 # explore: test_create_process {}
