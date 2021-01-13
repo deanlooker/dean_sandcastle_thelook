@@ -1,6 +1,18 @@
 view: dean_orders_2 {
   sql_table_name: demo_db.orders;;
 
+  parameter: field_selector {
+    type: unquoted
+    allowed_value: {label: "ID"    value: "${TABLE}.id" }
+    allowed_value: {label: "USER ID"  value: "${TABLE}.user_id" }
+    allowed_value: {label: "STATUS"    value: "${TABLE}.status"   }
+  }
+
+  dimension: flex_field {
+    type:  string
+    sql:  {% parameter field_selector %} ;;
+  }
+
   filter: date_filter {
     label: "Date Range (Limited to 365 days prior to end date)"
     type: date
@@ -70,20 +82,20 @@ view: dean_orders_2 {
     sql: CASE WHEN (date(dateadd({% parameter date_filter_selector %}, INTERVAL -7 DAY)) = ${created_date}) THEN ${id} else NULL end ;;
   }
 
-  dimension_group: created_nofill {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.created_at ;;
-    allow_fill: no
-  }
+  # dimension_group: created_nofill {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.created_at ;;
+  #   allow_fill: no
+  # }
 
   dimension: id {
     primary_key: yes

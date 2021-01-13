@@ -1,4 +1,4 @@
-connection: "the_look"
+connection: "thelook"
 
 ###testing lalalal ####
 # include all the views
