@@ -1,16 +1,27 @@
 view: dean_orders_2 {
-  sql_table_name: demo_db.orders;;
+  sql_table_name: demo_db.orders ;;
 
-  parameter: field_selector {
-    type: unquoted
-    allowed_value: {label: "ID"    value: "${TABLE}.id" }
-    allowed_value: {label: "USER ID"  value: "${TABLE}.user_id" }
-    allowed_value: {label: "STATUS"    value: "${TABLE}.status"   }
+  # parameter: field_selector {
+  #   type: unquoted
+  #   allowed_value: {label: "ID"    value: "${TABLE}.id" }
+  #   allowed_value: {label: "USER ID"  value: "${TABLE}.user_id" }
+  #   allowed_value: {label: "STATUS"    value: "${TABLE}.status"   }
+  # }
+
+  # dimension: flex_field {
+  #   type:  string
+  #   sql:  {% parameter field_selector %} ;;
+  # }
+  dimension: id_2 {
+    type: string
+    sql: ${TABLE}.id ;;
+    tags: ["phone"]
   }
 
-  dimension: flex_field {
-    type:  string
-    sql:  {% parameter field_selector %} ;;
+  dimension: phone_number {
+    type: string
+    sql: "+1 607 351 2292" ;;
+    tags: ["phone"]
   }
 
   filter: date_filter {

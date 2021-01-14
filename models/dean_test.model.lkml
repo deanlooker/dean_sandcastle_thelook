@@ -71,6 +71,10 @@ explore: limited_orders_suggest {
 
 }
 
+explore: orders_2_dupe {
+  from: dean_orders_2
+}
+
 
 
 # explore: order_items_ext {
