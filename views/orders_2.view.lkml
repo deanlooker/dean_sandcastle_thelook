@@ -18,6 +18,10 @@ view: dean_orders_2 {
     tags: ["phone"]
   }
 
+  parameter: date_time_selector {
+    type: date_time
+  }
+
   dimension: phone_number {
     type: string
     sql: "+1 607 351 2292" ;;
@@ -172,6 +176,7 @@ view: dean_orders_2 {
   measure: orders_per_user {
     type: number
     sql: ${count}/${distinct_users} ;;
+    value_format_name: decimal_4
   }
 
   # measure: distinct_items {
@@ -189,6 +194,23 @@ view: dean_orders_2 {
     tags: ["user_id"]
   }
 
+  parameter: measure_picker {
+    type: unquoted
+    allowed_value: { value: "count_complete" }
+    allowed_value: { value: "orders_per_user" }
+  }
+
+  measure: dynamic_measure {
+    type: number
+    sql: {% if measure_picker._parameter_value == "count_complete" %}
+            ${count_complete}
+          {% elsif measure_picker._parameter_value == "orders_per_user" %}
+            ${orders_per_user}
+          {% else %}
+            null
+          {% endif %}  ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
@@ -202,7 +224,7 @@ view: dean_orders_2 {
   measure: count_complete {
     type: count
     filters: [status: "complete"]
-
+    value_format_name: decimal_1
   }
 
   measure: raw_count {

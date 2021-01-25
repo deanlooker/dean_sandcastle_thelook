@@ -14,11 +14,7 @@ datagroup: dean_test_default_datagroup {
 
 # persist_with: dean_test_default_datagroup
 
-explore: connection_reg_r3 {
-  sql_always_where: 1=2 ;;
-}
 
-explore: test_create_process {}
 
 explore: derived_test_table_3_20190510 {}
 
