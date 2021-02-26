@@ -14,7 +14,7 @@ datagroup: dean_test_default_datagroup {
 
 datagroup: dean_test_20210216 {
   sql_trigger: SELECT current_date();;
-  max_cache_age: "12 hours"
+  max_cache_age: "15 hours"
 }
 
 # persist_with: dean_test_default_datagroup
