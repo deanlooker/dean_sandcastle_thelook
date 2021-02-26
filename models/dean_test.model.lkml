@@ -12,6 +12,11 @@ datagroup: dean_test_default_datagroup {
   max_cache_age: "1 hour"
 }
 
+datagroup: dean_test_20210216 {
+  sql_trigger: SELECT current_date();;
+  max_cache_age: "15 hours"
+}
+
 # persist_with: dean_test_default_datagroup
 
 
@@ -84,6 +89,7 @@ explore: order_items {
   #   field: users.state
   #   user_attribute: state
   # }
+  persist_with: dean_test_20210216
   view_name: order_items
   join: dean_orders_2 {
     type: left_outer

@@ -82,6 +82,30 @@ view: dean_orders_2 {
     datatype: timestamp
   }
 
+  dimension: date_start {
+    type: date
+    sql: date({% date_start created_time %}) ;;
+  }
+
+  dimension: date_end {
+    type: date
+    sql: date({% date_end created_time %}) ;;
+  }
+
+  dimension: date_diff {
+    type: number
+    sql: datediff(${date_end},${date_start}) ;;
+  }
+
+  dimension: dynamic_date {
+    type: date
+    sql: CASE WHEN datediff(date({% date_end created_time %}),date({% date_start created_time %})) >= 90
+          THEN date(date_format(${created_date}, "%Y-%m-01"))
+          ELSE
+          ${created_date}
+          END;;
+  }
+
   parameter: date_filter_selector {
     type: date
     suggest_dimension: orders_2.created_date
