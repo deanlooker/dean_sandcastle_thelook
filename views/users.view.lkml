@@ -14,6 +14,12 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
+  measure: age_percentile {
+    type: percentile
+    percentile: 50
+    sql: ${age} ;;
+  }
+
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;

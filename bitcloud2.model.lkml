@@ -1,4 +1,4 @@
-connection: "thelook"
+connection: "the_look"
 
 # include all the views
 include: "*.view"

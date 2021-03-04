@@ -82,6 +82,8 @@ view: dean_orders_2 {
     datatype: timestamp
   }
 
+
+
   dimension: date_start {
     type: date
     sql: date({% date_start created_time %}) ;;
