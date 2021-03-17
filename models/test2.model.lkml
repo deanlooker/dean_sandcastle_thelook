@@ -41,7 +41,7 @@ access_grant: can_see_any_data {
 #   }
 # }
 
-explore: inventory_items {
+explore: inventory_items_test {
   view_name: inventory_items
   required_access_grants: [can_see_sensitive_data_only]
   join: products {
@@ -53,7 +53,7 @@ explore: inventory_items {
 
 explore: inventory_items_ext {
   label: "Inventory Items Extended"
-  extends: [inventory_items]
+  extends: [inventory_items_test]
   required_access_grants: [can_see_any_data]
 }
 
@@ -140,7 +140,7 @@ join: user_facts {
 #   }
 # }
 
-explore: dean_orders_2 {
+explore: dean_orders_2_test {
 ##   sql_always_where:
 ## ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY)
 ## ;;
