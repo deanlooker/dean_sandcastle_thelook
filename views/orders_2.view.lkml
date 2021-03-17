@@ -258,6 +258,11 @@ view: dean_orders_2 {
     sql: count(*) ;;
   }
 
+  measure: list_status {
+    type: string
+    sql: group_concat(distinct ${status}) ;;
+  }
+
   ### For use with sql_always_where in limited_orders explore ###
 
   parameter: user_id_parameter {

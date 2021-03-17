@@ -144,6 +144,9 @@ explore: dean_orders_2 {
 ##   sql_always_where:
 ## ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY)
 ## ;;
+description: "Use this for orders.
+1. Join on Users
+2. Join on Order Items"
 
 
 
@@ -157,7 +160,15 @@ explore: dean_orders_2 {
     sql_on: ${order_items.order_id} = ${dean_orders_2.id} ;;
     relationship: one_to_many
   }
+  query: test_param {
+    measures: [count]
+    filters: [dean_orders_2.user_id_parameter: "1"]
+    timezone: "America/New_York"
+  }
 }
+
+
+
 
 explore: products {
   join: products_brand_count {
