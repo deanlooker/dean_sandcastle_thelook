@@ -160,8 +160,8 @@ view: dean_orders_2 {
 
   parameter: view {
     type: unquoted
-    allowed_value: {value:"dean_orders_2"}
-    allowed_value: {value:"order_items"}
+    allowed_value: {label: "orders_2" value:"dean_orders_2"}
+    allowed_value: {label: "order_items" value:"order_items"}
   }
 
 
