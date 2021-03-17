@@ -41,7 +41,7 @@ access_grant: can_see_any_data {
 #   }
 # }
 
-explore: inventory_items_test {
+explore: inventory_items {
   view_name: inventory_items
   required_access_grants: [can_see_sensitive_data_only]
   join: products {
@@ -53,7 +53,7 @@ explore: inventory_items_test {
 
 explore: inventory_items_ext {
   label: "Inventory Items Extended"
-  extends: [inventory_items_test]
+  extends: [inventory_items]
   required_access_grants: [can_see_any_data]
 }
 
@@ -83,7 +83,7 @@ explore: orders_2_dupe {
 #   extends: [order_items]
 # }
 
-explore: order_items {
+explore: order_items_test {
 #   hidden:  yes
 # access_filter: {
 #   field: users.state
