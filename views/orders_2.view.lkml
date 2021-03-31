@@ -84,6 +84,8 @@ view: dean_orders_2 {
 
 
 
+
+
   dimension: date_start {
     type: date
     sql: date({% date_start created_time %}) ;;
@@ -123,6 +125,55 @@ view: dean_orders_2 {
     sql: CASE WHEN (date(dateadd({% parameter date_filter_selector %}, INTERVAL -7 DAY)) = ${created_date}) THEN ${id} else NULL end ;;
   }
 
+  explore: dean_orders_2 {
+    join: users {
+      type: left_outer
+      sql_on: ${dean_orders_2.user_id} = ${users.id} ;;
+      relationship: many_to_one
+    }
+    join: order_items {
+      type: inner
+      sql_on: ${order_items.order_id} = ${dean_orders_2.id} ;;
+      relationship: one_to_many
+    }
+    sql_always_where: ${dean_orders_2.month} = January ;;
+  }
+
+view:  test {
+  sql_table_name: demo_db.orders ;;
+
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status  ;;
+    suggest_persist_for: "0 minutes"
+    suggest_explore: limited_orders_suggest
+    suggest_dimension: limited_orders_suggest.suggest_status
+  }
+
+  dimension: suggest_status {
+    type: string
+    sql: ${TABLE}.status  ;;
+    suggest_persist_for: "0 minutes"
+    }
+
+
+  dimension: month {
+    type: string
+    sql: monthname(${TABLE}.created_at) ;;
+    # suggest_explore: limited_orders_suggest
+    # suggest_dimension: limited_orders_suggest.suggest_month
+    suggest_persist_for: "0 minutes"
+  }
+
+  dimension: suggest_month {
+    type: string
+    sql: monthname(${TABLE}.created_at) ;;
+    suggest_persist_for: "0 minutes"
+  }
+  }
+
+
+
   # dimension_group: created_nofill {
   #   type: time
   #   timeframes: [
@@ -160,7 +211,7 @@ view: dean_orders_2 {
 
   parameter: view {
     type: unquoted
-    allowed_value: {label: "orders_2" value:"dean_orders_2"}
+    allowed_value: {label: "orders_2_test" value:"dean_orders_2"}
     allowed_value: {label: "order_items" value:"order_items"}
   }
 
@@ -177,7 +228,7 @@ view: dean_orders_2 {
     sql: SELECT min(created_at) from demo_db.orders where user_id = ${user_id} ;;
   }
 
-  dimension: status {
+  dimension: status_test {
     type: string
     sql: ${TABLE}.status ;;
     html:
@@ -190,6 +241,7 @@ view: dean_orders_2 {
     🤷
     {% endif %}
     {{ value }} </p></b>;;
+
   }
 
   measure: distinct_users {

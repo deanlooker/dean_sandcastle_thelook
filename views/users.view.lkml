@@ -135,6 +135,10 @@ view: users {
   measure: count {
     type: count
     drill_fields: [detail*]
+    html: {% if dean_orders_2.count._in_query %}
+    {% else %}
+    {{linked_value}}
+    {% endif %};;
   }
 
   # ----- Sets of fields for drilling ------

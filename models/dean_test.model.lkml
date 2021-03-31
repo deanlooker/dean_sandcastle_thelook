@@ -68,7 +68,7 @@ explore: limited_orders {
 
 explore: limited_orders_suggest {
   from: dean_orders_2
-  hidden: yes
+  # hidden: yes
 
 }
 
