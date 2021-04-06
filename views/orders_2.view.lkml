@@ -125,22 +125,7 @@ view: dean_orders_2 {
     sql: CASE WHEN (date(dateadd({% parameter date_filter_selector %}, INTERVAL -7 DAY)) = ${created_date}) THEN ${id} else NULL end ;;
   }
 
-  explore: dean_orders_2 {
-    join: users {
-      type: left_outer
-      sql_on: ${dean_orders_2.user_id} = ${users.id} ;;
-      relationship: many_to_one
-    }
-    join: order_items {
-      type: inner
-      sql_on: ${order_items.order_id} = ${dean_orders_2.id} ;;
-      relationship: one_to_many
-    }
-    sql_always_where: ${dean_orders_2.month} = January ;;
-  }
 
-view:  test {
-  sql_table_name: demo_db.orders ;;
 
   dimension: status {
     type: string
@@ -170,7 +155,7 @@ view:  test {
     sql: monthname(${TABLE}.created_at) ;;
     suggest_persist_for: "0 minutes"
   }
-  }
+
 
 
 
