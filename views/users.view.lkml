@@ -81,7 +81,8 @@ view: users {
   dimension: full_name {
     label: "{{ _view._name }} Name"
     type:  string
-    sql: concat(${first_name},${last_name} ;;
+    sql: concat(${first_name},${last_name}) ;;
+    html: <div style="text-align:center">{{rendered_value}}</div> ;;
   }
 
   dimension: state {

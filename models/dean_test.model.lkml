@@ -178,6 +178,16 @@ explore: products {
    }
 }
 
+explore: create_bigint_test {}
+
+explore: create_int_test {
+  join: create_bigint_test {
+    type: left_outer
+    sql_on: ${create_bigint_test.bigint_id} = ${create_int_test.int_id} ;;
+    relationship: one_to_one
+  }
+}
+
 explore: dean_orders {}
 
 explore: schema_migrations {}

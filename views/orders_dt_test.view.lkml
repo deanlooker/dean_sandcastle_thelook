@@ -1,10 +1,6 @@
 view: orders_dt_test {
   derived_table: {
-    sql: SELECT
-        * from demo_db.orders
-        where {% condition filter_test %} status {% endcondition %}
-      order by created_at desc
-      ;;
+    sql: @{sql_code};;
       }
  parameter: limit_num {
    type: number
