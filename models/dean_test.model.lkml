@@ -141,9 +141,10 @@ explore: order_items {
 # }
 
 explore: dean_orders_2 {
-##   sql_always_where:
-## ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY)
-## ;;
+#   sql_always_where:
+# ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY)
+# ;;
+sql_always_where:  {% condition dean_orders_2.created_date %}  ${created_date} {% endcondition %};;
 description: "Use this for orders.
 1. Join on Users
 2. Join on Order Items"

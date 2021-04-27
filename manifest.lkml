@@ -1,8 +1,9 @@
 project_name: "dean_thelook"
 
+
+
 constant: connection {
   value: "the_look"
-  export: override_required
 }
 constant: sql_code {
   value: "SELECT
@@ -11,6 +12,6 @@ constant: sql_code {
       order by created_at desc"
 }
 
-local_dependency: {
-  project: "phish-thesis"
-}
+# local_dependency: {
+#   project: "phish_thesis"
+# }

@@ -277,6 +277,7 @@ view: dean_orders_2 {
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
+    html: <p style="font-size:12px">{{value}}</p> ;;
   }
 
   dimension: is_complete {
