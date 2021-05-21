@@ -1,11 +1,11 @@
 view: dean_orders {
-  sql_table_name: demo_db.orders;;
+  sql_table_name: (select * from demo_db.orders where status = 'complete');;
   drill_fields: [id]
 
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.id_lol ;;
   }
 
   filter: test_filter {

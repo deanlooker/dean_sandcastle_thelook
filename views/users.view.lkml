@@ -1,6 +1,6 @@
 view: users {
   sql_table_name: demo_db.users ;;
-  drill_fields: [id]
+  # drill_fields: [id]
 
   dimension: id {
     primary_key: yes
@@ -23,6 +23,10 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    link: {
+      # label: "dash"
+      url: "/explore/dean_test/users?fields=users.count&limit=500"
+    }
   }
 
   dimension: country {
@@ -135,11 +139,15 @@ view: users {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-    html: {% if dean_orders_2.count._in_query %}
-    {% else %}
-    {{linked_value}}
-    {% endif %};;
+    # drill_fields: [detail*]
+    link: {
+      # label: "dash"
+      url: "/explore/dean_test/users?fields=users.count&limit=500"
+    }
+    # html: {% if dean_orders_2.count._in_query %}
+    # {% else %}
+    # {{linked_value}}
+    # {% endif %};;
   }
 
   # ----- Sets of fields for drilling ------
