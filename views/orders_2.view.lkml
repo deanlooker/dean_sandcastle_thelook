@@ -204,7 +204,7 @@ view: dean_orders_2 {
 
   measure: most_recent {
     type: date_time
-    sql: max(${created_datex}) ;;
+    sql: max(${created_date}) ;;
   }
 
   dimension_group: first_order {
