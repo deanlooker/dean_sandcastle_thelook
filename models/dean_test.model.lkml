@@ -12,6 +12,11 @@ datagroup: dean_test_default_datagroup {
   max_cache_age: "1 hour"
 }
 
+access_grant: test {
+  user_attribute: external_user_id
+  allowed_values: ["1"]
+}
+
 datagroup: dean_test_20210216 {
   sql_trigger: SELECT current_date();;
   max_cache_age: "15 hours"

@@ -24,8 +24,8 @@ view: users {
     type: string
     sql: ${TABLE}.city ;;
     link: {
-      # label: "dash"
-      url: "/explore/dean_test/users?fields=users.count&limit=500"
+      label: "dash"
+      url: "{% if _user_attributes['state'] == 'New York' %} /explore/dean_test/users?fields=users.count&limit=500 {% else %} /dashboards/3 {% endif %}"
     }
   }
 
