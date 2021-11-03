@@ -3,7 +3,7 @@ project_name: "dean_thelook"
 
 
 constant: connection {
-  value: "the_look"
+  value: "thelook"
 }
 constant: sql_code {
   value: "SELECT
