@@ -12,6 +12,12 @@ datagroup: dean_test_default_datagroup {
   max_cache_age: "1 hour"
 }
 
+datagroup: dean_test_default_datagroup_daily {
+  sql_trigger: SELECT DATE(CURTIME());;
+  max_cache_age: "24 hours"
+}
+
+
 # persist_with: dean_test_default_datagroup
 
 explore: connection_reg_r3 {
@@ -71,7 +77,9 @@ explore: limited_orders_suggest {
   fields: [ALL_FIELDS*, -limited_orders_suggest.distinct_items ]
 }
 
+explore: orders_pdt_test {}
 
+explore: orders_pdt_test_daily {}
 
 # explore: order_items_ext {
 #   hidden:  no

@@ -45,6 +45,27 @@ view: order_items {
     sql: ${sale_price} ;;
   }
 
+  dimension: sale_price_negative {
+    type: number
+    sql: (-1 * ${TABLE}.sale_price) ;;
+  }
+
+  dimension: sale_price_both {
+    type: number
+    sql:  CASE WHEN ${users.state} = "New York" THEN ${sale_price_negative} ELSE ${sale_price} end ;;
+  }
+
+  measure: total_sale_price_with_negative {
+    type: sum
+    sql: ${sale_price_both} ;;
+  }
+
+  measure: total_sale_price_with_negative_formatted {
+    type: number
+    sql: CASE WHEN ${total_sale_price_with_negative} < 0 THEN 0 else ${total_sale_price_with_negative} end;;
+    html: {{total_sale_price_with_negative._rendered_value}}  ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
