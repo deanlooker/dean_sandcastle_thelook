@@ -1,4 +1,4 @@
-connection: "thelook"
+connection: "the_look"
 
 include: "*.view.lkml"                       # include all views in this project
 

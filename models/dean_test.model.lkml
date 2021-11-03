@@ -1,4 +1,4 @@
-connection: "thelook"
+connection: "@{connection}"
 
 ###testing lalalal ####
 # include all the views
@@ -24,7 +24,19 @@ explore: connection_reg_r3 {
   sql_always_where: 1=2 ;;
 }
 
-explore: test_create_process {}
+access_grant: test {
+  user_attribute: external_user_id
+  allowed_values: ["1"]
+}
+
+datagroup: dean_test_20210216 {
+  sql_trigger: SELECT current_date();;
+  max_cache_age: "15 hours"
+}
+
+# persist_with: dean_test_default_datagroup
+
+# lol
 
 explore: derived_test_table_3_20190510 {}
 
@@ -68,13 +80,17 @@ explore: limited_orders {
   view_name: dean_orders_2
   always_filter: {filters: [user_id_parameter: ""]}
   sql_always_where: ${dean_orders_2.user_id} = {% parameter dean_orders_2.user_id_parameter %} ;;
-  fields: [ALL_FIELDS*, -dean_orders_2.distinct_items ]
+
 }
 
 explore: limited_orders_suggest {
   from: dean_orders_2
-  hidden: yes
-  fields: [ALL_FIELDS*, -limited_orders_suggest.distinct_items ]
+  # hidden: yes
+
+}
+
+explore: orders_2_dupe {
+  from: dean_orders_2
 }
 
 explore: orders_pdt_test {}
@@ -92,6 +108,7 @@ explore: order_items {
   #   field: users.state
   #   user_attribute: state
   # }
+  persist_with: dean_test_20210216
   view_name: order_items
   join: dean_orders_2 {
     type: left_outer
@@ -143,9 +160,13 @@ explore: order_items {
 # }
 
 explore: dean_orders_2 {
-##   sql_always_where:
-## ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY)
-## ;;
+#   sql_always_where:
+# ${created_date} >= {% date_start dean_orders_2.date_filter %} AND ${created_date} <= {% date_end dean_orders_2.date_filter %} AND ${created_date} > date_sub({% date_end dean_orders_2.date_filter %}, INTERVAL 365 DAY)
+# ;;
+sql_always_where:  {% condition dean_orders_2.created_date %}  ${created_date} {% endcondition %};;
+description: "Use this for orders.
+1. Join on Users
+2. Join on Order Items"
 
 
 
@@ -159,7 +180,15 @@ explore: dean_orders_2 {
     sql_on: ${order_items.order_id} = ${dean_orders_2.id} ;;
     relationship: one_to_many
   }
+  query: test_param {
+    measures: [count]
+    filters: [dean_orders_2.user_id_parameter: "1"]
+    timezone: "America/New_York"
+  }
 }
+
+
+
 
 explore: products {
   join: products_brand_count {
@@ -167,6 +196,16 @@ explore: products {
     sql_on: ${products.brand} = ${products_brand_count.brand} ;;
     relationship: many_to_one
    }
+}
+
+explore: create_bigint_test {}
+
+explore: create_int_test {
+  join: create_bigint_test {
+    type: left_outer
+    sql_on: ${create_bigint_test.bigint_id} = ${create_int_test.int_id} ;;
+    relationship: one_to_one
+  }
 }
 
 explore: dean_orders {}
@@ -208,5 +247,7 @@ explore: users {
 explore: users_nn {}
 
 explore: orders_dt_test {}
+
+explore: orders_by_state_dt {}
 
 # explore: test_create_process {}

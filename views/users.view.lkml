@@ -1,6 +1,6 @@
 view: users {
   sql_table_name: demo_db.users ;;
-  drill_fields: [id]
+  # drill_fields: [id]
 
   dimension: id {
     primary_key: yes
@@ -14,9 +14,19 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
+  measure: age_percentile {
+    type: percentile
+    percentile: 50
+    sql: ${age} ;;
+  }
+
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    link: {
+      label: "dash"
+      url: "{% if _user_attributes['state'] == 'New York' %} /explore/dean_test/users?fields=users.count&limit=500 {% else %} /dashboards/3 {% endif %}"
+    }
   }
 
   dimension: country {
@@ -72,6 +82,13 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
 
+  dimension: full_name {
+    label: "{{ _view._name }} Name"
+    type:  string
+    sql: concat(${first_name},${last_name}) ;;
+    html: <div style="text-align:center">{{rendered_value}}</div> ;;
+  }
+
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
@@ -122,7 +139,15 @@ view: users {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+    # drill_fields: [detail*]
+    link: {
+      # label: "dash"
+      url: "/explore/dean_test/users?fields=users.count&limit=500"
+    }
+    # html: {% if dean_orders_2.count._in_query %}
+    # {% else %}
+    # {{linked_value}}
+    # {% endif %};;
   }
 
   # ----- Sets of fields for drilling ------

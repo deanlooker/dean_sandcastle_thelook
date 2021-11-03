@@ -68,19 +68,19 @@
     width: 8
     height: 6
   filters:
-  - name: created
-    title: created
-    type: field_filter
-    default_value: 7 days
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: advanced
-      display: popover
-    model: bitcloud2
-    explore: orders
-    listens_to_filters: []
-    field: orders.created_date
+  # - name: created
+  #   title: created
+  #   type: field_filter
+  #   default_value: 7 days
+  #   allow_multiple_values: true
+  #   required: false
+  #   ui_config:
+  #     type: advanced
+  #     display: popover
+  #   model: bitcloud2
+  #   explore: orders
+  #   listens_to_filters: []
+  #   field: orders.created_date
   - name: datetest
     title: Datetest
     type: date_filter

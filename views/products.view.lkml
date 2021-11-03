@@ -11,6 +11,27 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    action: {
+      label: "Cool Name?"
+      url: "https://webhook.site/d9fdaf45-4850-4af0-a042-664bbe8259eb"
+      param: {
+        name: "name"
+        value: "{{ value }}"
+      }
+      form_param: {
+        name: "annotation"
+        type: select
+        label: "Cool name?"
+        default: "No"
+        description: "Do you think that this name is a cool name?"
+        option: {
+          name: "No"
+        }
+        option: {
+          name: "Yes"
+        }
+      }
+    }
   }
 
   dimension: category {
