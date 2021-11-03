@@ -12,6 +12,6 @@ constant: sql_code {
       order by created_at desc"
 }
 
-local_dependency: {
-  project: "phish_thesis"
-}
+# local_dependency: {
+#   project: "phish_thesis"
+# }
