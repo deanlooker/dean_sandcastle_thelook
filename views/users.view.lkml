@@ -121,8 +121,14 @@ view: users {
   }
 
   measure: count {
+    value_format: "0.00\%"
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: count_test {
+    value_format: "0.00\%"
+    type: count
   }
 
   # ----- Sets of fields for drilling ------
