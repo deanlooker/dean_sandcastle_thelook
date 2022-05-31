@@ -10,7 +10,6 @@ datagroup: thelook_bq_default_datagroup {
 
 persist_with: thelook_bq_default_datagroup
 
-explore: fake_scratch__connection_reg_r3 {}
 
 explore: billion_orders_wide {
   join: orders {
@@ -48,7 +47,6 @@ explore: connection_reg_r3 {}
 
 explore: erin_newtable {}
 
-explore: fatal_error_persist_for_five_seconds {}
 
 explore: hundred_million_orders_wide {
   join: orders {
@@ -78,15 +76,6 @@ explore: hundred_million_orders {
   }
 }
 
-explore: mat_view_base_3317 {}
-
-explore: mat_view_base_3890 {}
-
-explore: mat_view_base_1247 {}
-
-explore: mat_view_base_4309 {}
-
-explore: looker_scratch__tst_reg_ebffc1deed5d25a581 {}
 
 explore: nested_and_repeated {
   join: nested_and_repeated__repeated_field {
@@ -138,9 +127,6 @@ explore: orders {
   }
 }
 
-explore: looker_scratch__tst_reg_963fdcc02655d76f67 {}
-
-explore: partition_on_col_test_2599 {}
 
 explore: orders_date_string {
   join: users {
@@ -158,99 +144,7 @@ explore: orders_date_string_test2 {
   }
 }
 
-explore: partition_on_col_test_ac46 {}
 
-explore: partition_on_col_test_c110 {}
-
-explore: partition_on_col_test_7d6f {}
-
-explore: partition_on_col_test_9a6a {}
-
-explore: partition_on_col_test_da74 {}
-
-explore: partition_table_a_13e8 {}
-
-explore: partition_table_a_119e {}
-
-explore: partition_table_a_1b77 {}
-
-explore: partition_table_a_2ff3 {}
-
-explore: partition_table_a_41d3 {}
-
-explore: partition_table_a_40bf {}
-
-explore: partition_table_a_55d9 {}
-
-explore: partition_table_a_7157 {}
-
-explore: partition_table_a_7b11 {}
-
-explore: partition_table_a_928b {}
-
-explore: partition_table_a_a7a2 {}
-
-explore: partition_table_a_a9d0 {}
-
-explore: partition_table_a_e8cb {}
-
-explore: partition_table_a_cc69 {}
-
-explore: partition_table_a_e897 {}
-
-explore: partition_table_a_f379 {}
-
-explore: partition_table_b_1ae9 {}
-
-explore: partition_table_b_1954 {}
-
-explore: partition_table_b_3624 {}
-
-explore: partition_table_b_5325 {}
-
-explore: partition_table_b_41bd {}
-
-explore: partition_table_b_a80b {}
-
-explore: partition_table_b_bc04 {}
-
-explore: partition_table_b_8bd9 {}
-
-explore: partition_table_b_798e {}
-
-explore: partition_table_b_b2fe {}
-
-explore: partition_table_b_cc59 {}
-
-explore: partition_table_b_c3eb {}
-
-explore: partitiondate_test_420a72da {}
-
-explore: partition_table_b_c777 {}
-
-explore: partition_table_b_dcfa {}
-
-explore: partition_table_b_d02e {}
-
-explore: partition_table_test2 {}
-
-explore: partitiondate_test_b0ea657e {}
-
-explore: partitiondate_test_ff471f55 {}
-
-explore: partitiondate_test_5ff0c6c8 {}
-
-explore: partitiondate_test_f38f76f1 {}
-
-explore: partitiontime_test_2f95 {}
-
-explore: partitiontime_test_1fbe {}
-
-explore: partitiondate_test_423c60ab {}
-
-explore: partitiontime_test_e6ac {}
-
-explore: partitiontime_test_cb9b {}
 
 explore: testing_table {}
 
@@ -260,6 +154,5 @@ explore: testing_table_one {}
 
 explore: testme {}
 
-explore: partitiontime_test_6be5 {}
 
 explore: users {}
